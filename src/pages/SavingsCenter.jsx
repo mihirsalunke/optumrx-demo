@@ -1,9 +1,9 @@
 const SavingsCenter = () => {
-    return (
-      <div>
-        <h1>Savings Center</h1>
-      </div>
-    );
-  };
+  return (
+    <div>
+      <h1>Savings Center</h1>
+    </div>
+  );
+};
   
-  export default SavingsCenter;
+export default SavingsCenter;

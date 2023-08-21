@@ -8,10 +8,15 @@ import OrderStatus from "./pages/OrderStatus";
 import PharmacyLocator from "./pages/PharmacyLocator";
 import PrescriptionDrugList from "./pages/PrescriptionDrugList";
 import SavingsCenter from "./pages/SavingsCenter";
+import NavBar from "./components/NavBar";
+import Header from "./components/Header";
+import CustomWidget from "./pages/CustomWidget";
 
 function App() {
   return (
     <Router>
+      <Header />
+      <NavBar />
       <Routes>
         <Route path="/optumrx-demo" component={Home} />
         <Route path="/secure/drug-pricing" component={DrugPricing} />
@@ -22,9 +27,10 @@ function App() {
         <Route path="/secure/pharmacy-locator" component={PharmacyLocator} />
         <Route path="/secure/prescription-drug-list" component={PrescriptionDrugList} />
         <Route path="/secure/savings-center" component={SavingsCenter} />
+        <Route path="/optumrx-demo/custom-widget" component={CustomWidget} />
       </Routes>
     </Router>
   );
-}
+};
 
 export default App;

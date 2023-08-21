@@ -1,9 +1,9 @@
 const PrescriptionDrugList = () => {
-    return (
-      <div>
-        <h1>Prescription Drug List</h1>
-      </div>
-    );
-  };
+  return (
+    <div>
+      <h1>Prescription Drug List</h1>
+    </div>
+  );
+};
   
-  export default PrescriptionDrugList;
+export default PrescriptionDrugList;

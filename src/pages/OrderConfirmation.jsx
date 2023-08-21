@@ -1,9 +1,9 @@
 const OrderConfirmation = () => {
-    return (
-      <div>
-        <h1>Order Confirmation</h1>
-      </div>
-    );
-  };
+  return (
+    <div>
+      <h1>Order Confirmation</h1>
+    </div>
+  );
+};
   
-  export default OrderConfirmation;
+export default OrderConfirmation;
