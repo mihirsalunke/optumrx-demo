@@ -13,8 +13,8 @@ const ErrorPanel = ({ sdeData }) => {
         <For each={errorInfoArr} fallback={<div>loading...</div>}>
             {([key, value]) => (
                 <tr class="grid grid-cols-2 gap-2">
-                    <td>{key}</td>
-                    <td>{typeof Boolean ? String(value) : value}</td>
+                    <td class="text-gray-400">{key}</td>
+                    <td class="text-white">{typeof Boolean ? String(value) : value}</td>
                 </tr>
             )}
         </For>

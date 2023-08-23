@@ -14,16 +14,22 @@ const CartPanel = ({ sdeData }) => {
         //     )}
         // </For>
         <>
+            <tr class="grid grid-cols-3 gap-2 text-white text-left">
+                <th>Product Info</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
             <For each={products} fallback={<div>loading...</div>}>
                 {({product, quantity}) => (
-                    <tr class="grid grid-cols-3 gap-2">
+                    <tr class="grid grid-cols-3 gap-2 text-gray-400">
                         <td>{`${product.name} ${product.category} ${product.sku}`}</td>
                         <td>{quantity}</td>
                         <td>{`${product.price} ${currency}`}</td>
                     </tr>
                 )}
             </For>
-            <tr class="grid grid-cols-3 gap-2">
+            <br/>
+            <tr class="grid grid-cols-3 gap-2 text-gray-200">
                 <td>Total</td>
                 <td>{numItems}</td>
                 <td>{`${total} ${currency}`}</td>

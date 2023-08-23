@@ -107,7 +107,7 @@ const CustomWidget = () => {
             </div>
             <div class="w-full max-w-md p-2 mx-auto bg-violet-900 rounded-2xl">
                 <Accordion class="space-y-2" defaultValue={SDEs} toggleable multiple>
-                <For each={lpSdes()}>
+                <For each={tempSDEs}>
                     {(sde) => (
                     <AccordionItem value={sde}>
                         <AccordionHeader>
@@ -135,7 +135,7 @@ const CustomWidget = () => {
                 </For>
                 </Accordion>
             </div>
-            <div class="flex justify-center">
+            <div class="flex justify-center mt-4">
                 <input class="border-2 border-gray-300 p-2 m-2 w-72 rounded" placeholder="Order Number" value={orderNumber()} oninput={(e) => setOrderNumber(e.target.value)} />
                 <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold m-2 py-2 px-4 w-32 rounded" onclick={() => getTrackingDetails(orderNumber())}>Track Order</button>
             </div>

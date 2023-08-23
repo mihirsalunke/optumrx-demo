@@ -14,15 +14,21 @@ const OrdersPanel = ({ sdeData }) => {
         //     )}
         // </For>
         <>
-            <tr class="grid grid-cols-3 gap-2">
+            <tr class="grid grid-cols-3 gap-2 text-white text-left">
                 <td>Order Number</td>
                 <td>{orderId}</td>
                 <td>{`${total} ${currency}`}</td>
             </tr>
-            <div>Cart Info:</div>
+            <br/>
+            <div class="text-white text-center font-bold text-lg">Cart details</div>
+            <tr class="grid grid-cols-3 gap-2 text-white text-left">
+                <th>Product Info</th>
+                <th>Quantity</th>
+                <th>Price</th>
+            </tr>
             <For each={products} fallback={<div>loading...</div>}>
                 {({product, quantity}) => (
-                    <tr class="grid grid-cols-3 gap-2">
+                    <tr class="grid grid-cols-3 gap-2 text-gray-400">
                         <td>{`${product.name} ${product.category} ${product.sku}`}</td>
                         <td>{quantity}</td>
                         <td>{`${product.price} ${currency}`}</td>

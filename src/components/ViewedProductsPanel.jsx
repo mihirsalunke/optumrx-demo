@@ -12,16 +12,16 @@ const ViewedProductsPanel = ({ sdeData }) => {
         //     )}
         // </For>
         <>
-            <tr class="grid grid-cols-4 gap-2">
-                <th>Product name / category / sku</th>
+            <tr class="grid grid-cols-4 gap-2 text-white text-left">
+                <th>Product Info</th>
                 <th>Availability</th>
-                <th>No. in inventory</th>
+                <th>Inventory</th>
                 <th>Price</th>
             </tr>
             <For each={products} fallback={<div>loading...</div>}>
                 {({product}) => (
                     <>
-                        <tr class="grid grid-cols-4 gap-2 text-center">
+                        <tr class="grid grid-cols-4 gap-2 text-gray-400">
                             <td>{`${product.name} ${product.category} ${product.sku}`}</td>
                             <td>{product.statusInStock}</td>
                             <td>{product.quantityInStock}</td>

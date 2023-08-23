@@ -16,8 +16,8 @@ const PersonalInfoPanel = ({ sdeData }) => {
         <For each={personalInfoArr} fallback={<div>loading...</div>}>
             {([key, value]) => (
                 <tr class="grid grid-cols-2 gap-2">
-                    <td>{key}</td>
-                    <td>{value}</td>
+                    <td class="text-gray-400">{key}</td>
+                    <td class="text-white">{value}</td>
                 </tr>
             )}
         </For>

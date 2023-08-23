@@ -4,7 +4,7 @@ const SearchInfoPanel = ({ sdeData }) => {
     return (
         <For each={searchedKeywords} fallback={<div>loading...</div>}>
             {(searchedKeyword) => (
-                <tr class="flex flex-col">
+                <tr class="flex flex-col text-white">
                     <td>{searchedKeyword}</td>
                 </tr>
             )}
