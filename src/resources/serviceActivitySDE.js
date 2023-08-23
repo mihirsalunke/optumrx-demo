@@ -1,4 +1,4 @@
-const serviceActivitySDE = {
+export const serviceActivitySDE = {
   "type": "service", //MANDATORY
   "service": {
     "topic": "order checkbook", // SERVICE ACTIVITY TOPIC OR NAME

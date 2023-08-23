@@ -1,4 +1,4 @@
-const visitorErrorSDE = {
+export const visitorErrorSDE = {
   "type": "error", //MANDATORY
   "error": {
     "contextId": "Credit card application",

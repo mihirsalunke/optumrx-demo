@@ -11,6 +11,7 @@ import SavingsCenter from "./pages/SavingsCenter";
 import NavBar from "./components/NavBar";
 import Header from "./components/Header";
 import CustomWidget from "./pages/CustomWidget";
+import AddSdes from "./pages/AddSdes";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path="/secure/prescription-drug-list" component={PrescriptionDrugList} />
         <Route path="/secure/savings-center" component={SavingsCenter} />
         <Route path="/optumrx-demo/custom-widget" component={CustomWidget} />
+        <Route path="/add-sdes" component={AddSdes} />
       </Routes>
     </Router>
   );
