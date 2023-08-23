@@ -68,18 +68,20 @@ const tempSDEs = [
 
 const CustomWidget = () => {
     const [lpSdes, setLpSdes] = createSignal();
+    const [orderNumber, setOrderNumber] = createSignal("");
+    const [trackingDetails, setTrackingDetails] = createSignal("");
 
     const formatSdes = (sdes) => {
         const output = [];
         for (const [key, value] of Object.entries(sdes)) {
             value.forEach((val) => {
                 if (Object.keys(sdeMapping).some((k) => k === key)) { // check if key is in sdeMapping keys
-                    console.log("val", val);
+                    // console.log("val", val);
                     output.push(val);
                 }
             });
         }
-        console.log("output", output);
+        // console.log("output", output);
         return output;
     }
 
@@ -87,10 +89,14 @@ const CustomWidget = () => {
         window.lpTag = window.lpTag || {};
         lpTag.sdes = lpTag.sdes||[];
         const sde = lpTag.sdes.get("");
-        console.log("sde", sde);
+        // console.log("sde", sde);
         const formattedSdes = formatSdes(sde);
         setLpSdes(formattedSdes);
         // return sde;
+    };
+
+    const getTrackingDetails = (orderNo) => {
+        setTrackingDetails(`Order #${orderNo} is on its way! ETA: 2 days}`);
     };
 
     return (
@@ -129,6 +135,11 @@ const CustomWidget = () => {
                 </For>
                 </Accordion>
             </div>
+            <div class="flex justify-center">
+                <input class="border-2 border-gray-300 p-2 m-2 w-72 rounded" placeholder="Order Number" value={orderNumber()} oninput={(e) => setOrderNumber(e.target.value)} />
+                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold m-2 py-2 px-4 w-32 rounded" onclick={() => getTrackingDetails(orderNumber())}>Track Order</button>
+            </div>
+            <div class="flex justify-center items-center text-white text-2xl">{trackingDetails()}</div>
         </div>
     );
 };
