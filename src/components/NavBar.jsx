@@ -28,6 +28,9 @@ const NavBar = () => {
                 <li class="mr-6">
                     <A href="/secure/savings-center" class="text-white hover:text-blue-300">Saving Center</A>
                 </li>
+                <li class="mr-6">
+                    <A href="/optumrx-demo/custom-widget" class="text-white hover:text-blue-300">Custom Widget Demo</A>
+                </li>
             </ul>
         </nav>
     );
