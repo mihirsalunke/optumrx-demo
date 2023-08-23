@@ -96,7 +96,7 @@ const CustomWidget = () => {
     };
 
     const getTrackingDetails = (orderNo) => {
-        setTrackingDetails(`Order #${orderNo} is on its way! ETA: 2 days}`);
+        setTrackingDetails(`Order #${orderNo} is on its way! ETA: 2 days`);
     };
 
     return (
