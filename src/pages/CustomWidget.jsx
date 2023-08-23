@@ -45,16 +45,24 @@ const sdeMapping = {
 const tempSDEs = [
     {
         type: "cart",
-        total: 11.7, //TOTAL CART VALUE
+        total: 25.2, //TOTAL CART VALUE
         currency: "USD", //CURRENCY CODE
-        numItems: 6, //NUMBER OF ITEMS IN CART
+        numItems: 3, //NUMBER OF ITEMS IN CART
         products: [{ //ARRAY OF PRODUCTS
             product: {
             name: "prod1", //PRODUCT NAME
-            category: "category", //PRODUCT CATEGORY NAME
-            sku: "sku", //PRODUCT SKU OR UNIQUE IDENTIFIER
+            category: "category1", //PRODUCT CATEGORY NAME
+            sku: "sku1", //PRODUCT SKU OR UNIQUE IDENTIFIER
             price: 7.8 //PRODUCT PRICE
             }, quantity: 1 //NUMBER OF PRODUCTS
+        },
+        { //ARRAY OF PRODUCTS
+            product: {
+            name: "prod2", //PRODUCT NAME
+            category: "categor2", //PRODUCT CATEGORY NAME
+            sku: "sku2", //PRODUCT SKU OR UNIQUE IDENTIFIER
+            price: 8.7 //PRODUCT PRICE
+            }, quantity: 2 //NUMBER OF PRODUCTS
         }],
     },
     {
@@ -71,6 +79,15 @@ const tempSDEs = [
                     price: 7.8 //SINGLE PRODUCT PRICE
                 },
                 quantity: 3 //QUANTITY OF THIS PRODUCT
+            },
+            {
+                product: {
+                name: "dental premium plan", //PRODUCT NAME
+                category: "health", //PRODUCT CATEGORY NAME
+                sku: "abc001", //PRODUCT SKU OR UNIQUE IDENTIFIER
+                price: 250.7 //SINGLE PRODUCT PRICE
+            },
+            quantity: 1 //QUANTITY OF THIS PRODUCT
             }],
         }
     },
@@ -83,8 +100,18 @@ const tempSDEs = [
                 category: "women shoes", //PRODUCT CATEGORY NAME
                 sku: "xyz567", //PRODUCT SKU OR UNIQUE IDENTIFIER
                 price: 77.8, //SINGLE PRODUCT PRICE
+                statusInStock: "high",  //PRODUCT STATUS IN STOCK
+                quantityInStock: 700  //AVAILABLE QUANTITY IN STOCK
+            }
+        },
+        { //ARRAY OF PRODUCTS
+            product: {
+                name: "nike air jordan 1", //PRODUCT NAME
+                category: "men shoes", //PRODUCT CATEGORY NAME
+                sku: "abc567", //PRODUCT SKU OR UNIQUE IDENTIFIER
+                price: 170.99, //SINGLE PRODUCT PRICE
                 statusInStock: "low",  //PRODUCT STATUS IN STOCK
-                quantityInStock: 7  //AVAILABLE QUANTITY IN STOCK
+                quantityInStock: 2  //AVAILABLE QUANTITY IN STOCK
             }
         }],
     },
@@ -183,136 +210,133 @@ const tempSDEs = [
     },
 ];
 
-const formatSDEs = (sde) => {
-    let formattedSDE = {};
-    if (sde.type === "cart") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Cart total": sde.total,
-            "Currency": sde.currency,
-            "Number of items": sde.numItems,
-            "Products": sde.products.map((product) => {
-                return {
-                    "Product name": product.product.name,
-                    "Product category": product.product.category,
-                    "Product SKU": product.product.sku,
-                    "Product price": product.product.price,
-                    "Total quantity": product.quantity
-                };
-            })
-        };
-    } else if (sde.type === "purchase") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Order total": sde.total,
-            "Currency": sde.currency,
-            "Order Id": sde.orderId,
-            cart: {
-                products: sde.cart.products.map((product) => {
-                    return {
-                        "Product name": product.product.name,
-                        "Product category": product.product.category,
-                        "Product SKU": product.product.sku,
-                        "Product price": product.product.price,
-                        "Total quantity": product.quantity
-                    };
-                })
-            },
-        };
-    } else if (sde.type === "prodView") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Currency": sde.currency,
-            "Products": sde.products.map((product) => {
-                return {
-                    "Product name": product.product.name,
-                    "Product category": product.product.category,
-                    "Product SKU": product.product.sku,
-                    "Product price": product.product.price,
-                    "Product status in stock": product.product.statusInStock,
-                    "Product quantity in stock": product.product.quantityInStock
-                };
-            })
-        };
-    } else if (sde.type === "ctmrinfo") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Customer status": sde.info.cstatus,
-            "Customer type": sde.info.ctype,
-            "Customer Id": sde.info.customerId,
-            "Customer balance": sde.info.balance,
-            "Currency": sde.info.currency,
-            "Social Id": sde.info.socialId,
-            "IMEI": sde.info.imei,
-            "User name": sde.info.userName,
-            "Company size": sde.info.companySize,
-            "Company branch": sde.info.companyBranch,
-            "Account name": sde.info.accountName,
-            "Role": sde.info.role,
-            "Last payment date": `${sde.info.lastPaymentDate.month}/${sde.info.lastPaymentDate.day}/${sde.info.lastPaymentDate.year}`,
-            "Registration date": `${sde.info.registrationDate.month}/${sde.info.registrationDate.day}/${sde.info.registrationDate.year}`,
-            "Store number": sde.info.storeNumber,
-            "Store zip code": sde.info.storeZipCode,
-        };
-    } else if (sde.type === "mrktInfo") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Channel": sde.info.channel,
-            "Affiliate": sde.info.affiliate,
-            "Campaign Id": sde.info.campaignId,
-        };
-    } else if (sde.type === "personal") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "First name": sde.personal.firstname,
-            "Last name": sde.personal.lastname,
-            "Age": sde.personal.age.age,
-            "Date of birth": `${sde.personal.age.month}/${sde.personal.age.day}/${sde.personal.age.year}`,
-            "Email": sde.personal.contacts[0].email,
-            "Phone": sde.personal.contacts[0].phone,
-            "Country": sde.personal.contacts[0].address.country,
-            "Region": sde.personal.contacts[0].address.region,
-        };
-    } else if (sde.type === "lead") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Topic": sde.lead.topic,
-            "Value": sde.lead.value,
-            "Currency": sde.lead.currency,
-            "Lead Id": sde.lead.leadId,
-        };
-    } else if (sde.type === "service") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Topic": sde.service.topic,
-            "Status": sde.service.status,
-            "Category": sde.service.category,
-            "Service Id": sde.service.serviceId,
-        };
-    } else if (sde.type === "error") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Context Id": sde.error.contextId,
-            "Error message": sde.error.message,
-            "Error code": sde.error.code,
-            "Level": sde.error.level,
-            "Resolved": sde.error.resolved,
-        };
-    } else if (sde.type === "searchInfo") {
-        formattedSDE = {
-            // type: sdeMapping[sde.type],
-            "Recently searched terms": sde.keywords,
-        };
-    }
+// const formatSDEs = (sde) => {
+//     let formattedSDE = {};
+//     if (sde.type === "cart") {
+//         formattedSDE = {
+//             type: sde.type,
+//             "Cart total": sde.total,
+//             "Currency": sde.currency,
+//             "Number of items": sde.numItems,
+//             "Products": sde.products.map((product) => {
+//                 return {
+//                     "Product name": product.product.name,
+//                     "Product category": product.product.category,
+//                     "Product SKU": product.product.sku,
+//                     "Product price": product.product.price,
+//                     "Total quantity": product.quantity
+//                 };
+//             })
+//         };
+//     } else if (sde.type === "purchase") {
+//         formattedSDE = {
+//             type: sde.type,
+//             "Order total": sde.total,
+//             "Currency": sde.currency,
+//             "Order Id": sde.orderId,
+//             cart: {
+//                 products: sde.cart.products.map((product) => {
+//                     return {
+//                         "Product name": product.product.name,
+//                         "Product category": product.product.category,
+//                         "Product SKU": product.product.sku,
+//                         "Product price": product.product.price,
+//                         "Total quantity": product.quantity
+//                     };
+//                 })
+//             },
+//         };
+//     } else if (sde.type === "prodView") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "Currency": sde.currency,
+//             "Products": sde.products.map((product) => {
+//                 return {
+//                     "Product name": product.product.name,
+//                     "Product category": product.product.category,
+//                     "Product SKU": product.product.sku,
+//                     "Product price": product.product.price,
+//                     "Product status in stock": product.product.statusInStock,
+//                     "Product quantity in stock": product.product.quantityInStock
+//                 };
+//             })
+//         };
+//     } else if (sde.type === "ctmrinfo") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "Customer status": sde.info.cstatus,
+//             "Customer type": sde.info.ctype,
+//             "Customer Id": sde.info.customerId,
+//             "Customer balance": sde.info.balance,
+//             "Currency": sde.info.currency,
+//             "Social Id": sde.info.socialId,
+//             "IMEI": sde.info.imei,
+//             "User name": sde.info.userName,
+//             "Company size": sde.info.companySize,
+//             "Company branch": sde.info.companyBranch,
+//             "Account name": sde.info.accountName,
+//             "Role": sde.info.role,
+//             "Last payment date": `${sde.info.lastPaymentDate.month}/${sde.info.lastPaymentDate.day}/${sde.info.lastPaymentDate.year}`,
+//             "Registration date": `${sde.info.registrationDate.month}/${sde.info.registrationDate.day}/${sde.info.registrationDate.year}`,
+//             "Store number": sde.info.storeNumber,
+//             "Store zip code": sde.info.storeZipCode,
+//         };
+//     } else if (sde.type === "mrktInfo") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "Channel": sde.info.channel,
+//             "Affiliate": sde.info.affiliate,
+//             "Campaign Id": sde.info.campaignId,
+//         };
+//     } else if (sde.type === "personal") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "First name": sde.personal.firstname,
+//             "Last name": sde.personal.lastname,
+//             "Age": sde.personal.age.age,
+//             "Date of birth": `${sde.personal.age.month}/${sde.personal.age.day}/${sde.personal.age.year}`,
+//             "Email": sde.personal.contacts[0].email,
+//             "Phone": sde.personal.contacts[0].phone,
+//             "Country": sde.personal.contacts[0].address.country,
+//             "Region": sde.personal.contacts[0].address.region,
+//         };
+//     } else if (sde.type === "lead") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "Topic": sde.lead.topic,
+//             "Value": sde.lead.value,
+//             "Currency": sde.lead.currency,
+//             "Lead Id": sde.lead.leadId,
+//         };
+//     } else if (sde.type === "service") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "Topic": sde.service.topic,
+//             "Status": sde.service.status,
+//             "Category": sde.service.category,
+//             "Service Id": sde.service.serviceId,
+//         };
+//     } else if (sde.type === "error") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "Context Id": sde.error.contextId,
+//             "Error message": sde.error.message,
+//             "Error code": sde.error.code,
+//             "Level": sde.error.level,
+//             "Resolved": sde.error.resolved,
+//         };
+//     } else if (sde.type === "searchInfo") {
+//         formattedSDE = {
+//             // type: sdeMapping[sde.type],
+//             "Recently searched terms": sde.keywords,
+//         };
+//     }
 
-    return formattedSDE;
-};
+//     return formattedSDE;
+// };
 
 const CustomWidget = () => {
     return (
-        // <div>
-        //     <p class="text-7xl text-orange-700 text-center py-20">Optum-Liveperson custom widget demo!</p>
-        // </div>
         <div class="w-full h-screen bg-violet-800">
             <div class="w-full max-w-md p-2 mx-auto bg-violet-900 rounded-2xl">
                 <Accordion class="space-y-2" defaultValue={SDEs} toggleable multiple>
@@ -337,8 +361,7 @@ const CustomWidget = () => {
                         </AccordionButton>
                         </AccordionHeader>
                         <AccordionPanel class="px-4 pt-4 pb-2 text-sm text-gray-500">
-                            {/* {JSON.stringify(formatSDEs(sde), null, 2)} */}
-                            <SDEtable sde={formatSDEs(sde)} />
+                            <SDEtable sde={sde} />
                         </AccordionPanel>
                     </AccordionItem>
                     )}
