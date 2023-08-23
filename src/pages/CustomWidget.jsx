@@ -107,7 +107,7 @@ const CustomWidget = () => {
             </div>
             <div class="w-full max-w-md p-2 mx-auto bg-violet-900 rounded-2xl">
                 <Accordion class="space-y-2" defaultValue={SDEs} toggleable multiple>
-                <For each={tempSDEs}>
+                <For each={lpSdes()}>
                     {(sde) => (
                     <AccordionItem value={sde}>
                         <AccordionHeader>
